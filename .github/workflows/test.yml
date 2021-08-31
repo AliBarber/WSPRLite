@@ -1,0 +1,16 @@
+name: Run GoogleTest
+on: [push]
+jobs:
+  Run-GTest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Get CMake
+        uses: lukka/get-cmake@latest
+      - name: Configure
+        working-directory: ${{github.workspace}}
+        run: cmake .
+      - name: Test
+        working-directory: ${{github.workspace}}   
+        run: make test
