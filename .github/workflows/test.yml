@@ -1,7 +1,7 @@
 name: Unit Tests
 on: [push]
 jobs:
-  Run-GTest:
+  Run-GoogleTest:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository

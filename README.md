@@ -1,4 +1,4 @@
-https://github.com/AliBarber/WSPRLite/actions/workflows/test.yml/badge.svg
+![GoogleTest Unit Tests](https://github.com/AliBarber/WSPRLite/actions/workflows/test.yml/badge.svg)
 
 ## WSPRLite
 
