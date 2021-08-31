@@ -3,7 +3,7 @@
 ## WSPRLite
 
 WSPRLite is a C++ header-only, lightweight, implementation of the [WSPR](http://www.wsprnet.org/drupal/) protocol.
-It values simplicity, portability, and readability. It is especially targeted for use with embedded systems, sush as Arduino
+It values simplicity, portability, and readability. It is especially targeted for use with embedded systems, such as Arduino
 or Teensy.
 
 At it simplest, a message can be encoded with the following code:
