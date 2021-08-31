@@ -9,6 +9,11 @@ or Teensy.
 At it simplest, a message can be encoded with the following code:
 
 ```
+#incude "wsprlite/WSPRLite.h"
+.
+.
+.
+.
 using namespace wsprlite;
 SymbolStream encoder;
 
