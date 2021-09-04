@@ -83,6 +83,7 @@ namespace wsprlite{
 		#ifdef TEST_BUILD
 		FRIEND_TEST(Interleaver, SetBit);
 		FRIEND_TEST(Interleaver, GetBit);
+		FRIEND_TEST(Interleaver, BitReverse);
 		#endif
 		static const unsigned char reverse(const unsigned char b){
 			// http://graphics.stanford.edu/~seander/bithacks.html#BitReverseTable
