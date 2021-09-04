@@ -77,18 +77,18 @@ namespace wsprlite{
 
 			return shuffle;
 		}
-		// TODO - Make this private
-		static const unsigned char reverse(const unsigned char b){
-			// http://graphics.stanford.edu/~seander/bithacks.html#BitReverseTable
-			return (unsigned char) 0xFF & ((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16; 
-		}
+
 	private:
 		friend Synchroniser;
 		#ifdef TEST_BUILD
 		FRIEND_TEST(Interleaver, SetBit);
 		FRIEND_TEST(Interleaver, GetBit);
 		#endif
-		// TODO - And this one
+		static const unsigned char reverse(const unsigned char b){
+			// http://graphics.stanford.edu/~seander/bithacks.html#BitReverseTable
+			return (unsigned char) 0xFF & ((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16; 
+		}
+		
 		static void setbit(uint16_t* data, unsigned int bit_number){
 			for(unsigned int i = 0; i < 16; i++){
 				if((i + 1) * 16 > bit_number){
