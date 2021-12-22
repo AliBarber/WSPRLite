@@ -21,16 +21,22 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR TH
 #ifndef WSPRLITE_BASE_HPP
 #define WSPRLITE_BASE_HPP
 
+#ifdef TEST_BUILD
+#define FRIEND_TEST(test_case_name, test_name)\
+friend class test_case_name##_##test_name##_Test
+#endif
+
 namespace wsprlite{
 	
 	class EncodedMessage;
 	class ChannelSymbols;
-	// class Callsign;
-	// class Locator;
-	// class PowerLevel;
 
-	// Something that we must do some arithmetic to 
-	// convert into a WSPR compatible message
+	/**
+	* @brief Packable Absctract Class
+	* 
+	* Subclasses of this class are values that can be 'packed' into 
+	* a single unsgined int. Eg, callsign.
+	*/
 	class Packable{
 	public:	
 		Packable() : _valid(false){}
@@ -44,8 +50,12 @@ namespace wsprlite{
 		bool _valid;
 	};
 
-	// Something that was can pass down a 'stream' 
-	// and use with the << operator
+	/**
+	* @brief Classes that can be treated similarly to a sream
+	*
+	* These classes are used to build up a compound value, such as
+	* the final set of symbols from the message inputs.
+	*/
 	class Streamable{
 	public:
 		Streamable(EncodedMessage* message) : _message(message){}

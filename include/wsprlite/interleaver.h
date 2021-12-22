@@ -24,11 +24,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR TH
 
 #include "encoder.h"
 #include "message.h"
-
-#ifdef TEST_BUILD
-#define FRIEND_TEST(test_case_name, test_name)\
-friend class test_case_name##_##test_name##_Test
-#endif
+#include "base.h"
 
 namespace wsprlite{
 	class Interleaver;

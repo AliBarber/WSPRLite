@@ -22,9 +22,13 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR TH
 #ifndef WSPRLITE_ENCODER_H
 #define WSPRLITE_ENCODER_H
 #include "message.h"
+#include "base.h"
 
 namespace wsprlite {
 	class ConvolutionalEncoder;
+	/**
+	* @brief Container class for a convolutional encoded message
+	*/
 	class ConvEncodedMessage{
 	public:
 		ConvEncodedMessage() : _data(new uint16_t[11]){
@@ -44,21 +48,17 @@ namespace wsprlite {
 		friend ConvolutionalEncoder;
 		uint16_t* _data;
 	};
+
+	/**
+	* @brief Implements the convolutional encoder stage of message encoding
+	*/
 	class ConvolutionalEncoder
 	{
 	public:
-		static bool parity(const uint32_t input){
-			// A bit hacky - but does the job for us
-			// TODO: Make this private / protected (and tests friends)
-			short parity = 0;
-			uint32_t input_shifted = input;
-			for(int i = 0; i < 32; i++){
-				parity = parity ^ (input_shifted & 0x1);
-				input_shifted = input_shifted >> 1;
-			}
-			return parity > 0;
-		}
-
+		/**
+		* Convolutionaly encode an input message into a 161 bit output
+		* @oaram message An Encoded Message consting of callsign, locator and power
+		*/
 		static const ConvEncodedMessage encode(const EncodedMessage& message){
 			ConvEncodedMessage out_msg;
 			if(message.data() == nullptr){
@@ -87,11 +87,24 @@ namespace wsprlite {
 					uint32_t reg_1_parity_input = reg_1 & 0xF2D05351;
 					uint32_t reg_2_parity_input = reg_2 & 0xE4613C47;
 					
-					*output_byte = *output_byte | (parity(reg_1_parity_input) << output_byte_counter++);
-					*output_byte = *output_byte | (parity(reg_2_parity_input) << output_byte_counter++); 
+					*output_byte = *output_byte | (parity32(reg_1_parity_input) << output_byte_counter++);
+					*output_byte = *output_byte | (parity32(reg_2_parity_input) << output_byte_counter++); 
 				}
 			}
 			return out_msg;
+		}
+	private:
+		#ifdef TEST_BUILD
+		FRIEND_TEST(ConvEncoder, Parity);
+		#endif
+		static bool parity32(const uint32_t input){
+			short parity = 0;
+			uint32_t input_shifted = input;
+			for(int i = 0; i < 32; i++){
+				parity = parity ^ (input_shifted & 0x1);
+				input_shifted = input_shifted >> 1;
+			}
+			return parity > 0;
 		}
 	};
 }

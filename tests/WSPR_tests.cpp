@@ -87,10 +87,10 @@ namespace wsprlite{
 	}
 
 	TEST(ConvEncoder, Parity){
-		EXPECT_EQ(ConvolutionalEncoder::parity(6), 0);
-		EXPECT_EQ(ConvolutionalEncoder::parity(14), 1);
-		EXPECT_EQ(ConvolutionalEncoder::parity(0x328B8020), 1);
-		EXPECT_EQ(ConvolutionalEncoder::parity(0x328B8028), 0);
+		EXPECT_EQ(ConvolutionalEncoder::parity32(6), 0);
+		EXPECT_EQ(ConvolutionalEncoder::parity32(14), 1);
+		EXPECT_EQ(ConvolutionalEncoder::parity32(0x328B8020), 1);
+		EXPECT_EQ(ConvolutionalEncoder::parity32(0x328B8028), 0);
 	}
 
 	TEST(ConvEncoder, Encoder){
