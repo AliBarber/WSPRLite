@@ -6,6 +6,7 @@ project(
 set (CMAKE_CXX_STANDARD 11)
 
 include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 
 ## The library
 add_library(WSPRLite INTERFACE)
